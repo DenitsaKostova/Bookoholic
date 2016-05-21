@@ -1,4 +1,5 @@
 # Bookoholic
+<i>This is an application for Bookoholics</i>
 
 The idea about the project was inspired by <a href="https://www.goodreads.com/">Goodreads</a>. The so called bookoholic can store information about his/hers books in the app and then search through the database. <br/>
 <ul>

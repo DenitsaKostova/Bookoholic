@@ -5,7 +5,7 @@ def create_table():
     connection = sqlite3.connect(DATABASE_NAME)
     cursor = connection.cursor()
     query = "CREATE TABLE IF NOT EXISTS " + \
-        "BooksInfo(isbn TEXT, title TEXT, author TEXT, " + \
+        "BooksInfo(isbn TEXT primary key, title TEXT, author TEXT, " + \
         "year LONG, genre TEXT, review TEXT, status TEXT)"
     cursor.execute(query)
     connection.commit()

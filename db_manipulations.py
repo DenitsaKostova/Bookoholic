@@ -26,19 +26,18 @@ def select_by_isbn(isbn):
 
 def select_by_title(title):
     query = "SELECT * FROM " + TABLE_NAME + " WHERE title='{}'".format(title)
-    print(query)
     return execute_query(query)
 
 def select_by_author(author):
-    query = "SELECT * FROM " + TABLE_NAME + " WHERE author=" + author
+    query = "SELECT * FROM " + TABLE_NAME + " WHERE author='{}'".format(author)
     execute_query(query)
 
 def select_by_genre(genre):
-    query = "SELECT * FROM " + TABLE_NAME + " WHERE genre=" + genre
+    query = "SELECT * FROM " + TABLE_NAME + " WHERE genre='{}'".format(genre)
     execute_query(query)
 
 def select_by_genre(status):
-    query = "SELECT * FROM " + TABLE_NAME + " WHERE status=" + status
+    query = "SELECT * FROM " + TABLE_NAME + " WHERE status='{}'".format(status)
     execute_query(query)
 
 def delete_all():
@@ -48,9 +47,9 @@ def select_all():
     query = "SELECT * FROM " + TABLE_NAME
     execute_query(query)
 
-delete_all()
+#delete_all()
 #add_entry('0439554937', 'Harry Potter', 'J.K.Rowling', 2003, 'Fantasy', 'very entertaining', 'read')
 #add_entry('0670026603', 'Me Before You', 'Jojo Moyes', 2012, 'Romantic', 'entertaining', 'to be read')
 
-print(select_by_title("Harry Potter"))
+#print(select_by_title("Harry Potter"))
 #print(select_all())

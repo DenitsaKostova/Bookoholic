@@ -42,9 +42,3 @@ class Book:
     @property
     def get_status(self):
         return self.get_status
-
-
-
-
-
-

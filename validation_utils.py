@@ -3,6 +3,7 @@ import re
 VALID_YEAR = r'^\d{4}$'
 VALID_ISBN = r'^(97(8|9))?\d{9}(\d|X)$'
 
+
 class Validations:
     @classmethod
     def equal(cls, pattern, value):

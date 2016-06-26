@@ -82,6 +82,6 @@ class LibraryForm(QDialog):
         
         print(books)
         book_model = BookModel()
-        books = [Book(book) for book in books]
+        books = [Book(*book) for book in books]
         book_model.set_books(books)
         self.show_table(book_model)

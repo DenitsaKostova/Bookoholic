@@ -27,7 +27,7 @@ class WishlistModel(QAbstractItemModel):
 
     def data(self, index, role):
         if (not self.hasIndex(index.row(), index.column()) or
-           role != Qt.DisplayRole):
+            role != Qt.DisplayRole):
             return QVariant()
 
         book = self.books[index.row()]

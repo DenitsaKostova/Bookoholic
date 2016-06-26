@@ -3,7 +3,7 @@ import os.path
 sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 
 from PyQt5.QtCore import Qt
-from PyQt5.QtGui import QIcon, QPixmap
+from PyQt5.QtGui import QIcon, QPixmap, QImage
 from PyQt5.QtWidgets import (QLabel, QLineEdit, QPushButton, QMessageBox,
                              QDialog, QGridLayout, QLayout, QTableView,
                              QAbstractScrollArea, QComboBox)
@@ -20,6 +20,15 @@ class WishlistForm(QDialog):
 
     def initUI(self, WishlistForm):
         layout = QGridLayout(self)
+        """layout.setContentsMargins(0, 0, 0, 0)
+        myImage = QImage()
+        myImage.load("../images/texture.jpg")
+
+        myLabel = QLabel()
+        myLabel.setScaledContents(True)
+        self.setGeometry(100, 100, 650, 350)
+        myLabel.setPixmap(QPixmap.fromImage(myImage))
+        layout.addWidget(myLabel)"""
 
         self.show_wishlist_button = QPushButton("Show Wishlist")
         layout.addWidget(self.show_wishlist_button, 0, 1, 1, 2)
@@ -42,8 +51,7 @@ class WishlistForm(QDialog):
     def show_wishlist_button_click(self):
         text = 'Want to Read'
         books = select_by_status(text)
-        print(books)
-        
+        #print(books)
         wishlist_model = WishlistModel()
         books = [Book(*book) for book in books]
         wishlist_model.set_books(books)

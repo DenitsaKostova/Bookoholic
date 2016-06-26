@@ -4,17 +4,6 @@ import os.path
 sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 
 class Book:
-# def __init__(self, isbn, title, author, year, genre, rating, review, status):
-#     self.isbn = isbn
-#     self.title = title
-#     self.author = author
-#     self.year = year
-#     self.genre = genre
-#     self.rating = rating
-#     self.review = review
-#     self.status = status
-
-#THIS NAME SHOULD BE CHANGED ASAP
     def __init__(self, *attrs):
         self.isbn = attrs[0]
         self.title = attrs[1]

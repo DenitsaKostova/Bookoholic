@@ -37,12 +37,10 @@ class MainWindow(QMainWindow):
         self.setWindowIcon(QIcon(QPixmap('../images/icon.png')))
 
         add_book_action = QAction(QIcon('../images/add.png'), '&Add Book', self)        
-        add_book_action.setShortcut('Ctrl+N')
         add_book_action.setStatusTip('Add a new book to the library')
         add_book_action.triggered.connect(self.add_book_form_load)
 
         search_book_action = QAction(QIcon('../images/search.png'), '&Search Book', self)
-        search_book_action.setShortcut('Ctrl+F')
         search_book_action.setStatusTip('Search for a book in the library')
         search_book_action.triggered.connect(self.search_book_form_load)
 
@@ -53,14 +51,14 @@ class MainWindow(QMainWindow):
         self.statusBar()
 
         menubar = self.menuBar()
+
         book_menu = menubar.addMenu('&Books')
         book_menu.addAction(add_book_action)     
         book_menu.addAction(search_book_action)
 
-        whishlist_menu = menubar.addMenu('&Whishlist')
+        whishlist_menu = menubar.addMenu('&Wishlist')
         whishlist_menu.addAction(show_wishlist_action)
-        #whishlist_menu.addAction(share_whishlist_action)
-
+        
         #self.setFixedSize(self.sizeHint())
         self.setWindowTitle("Bookoholic")
         self.move(QDesktopWidget().availableGeometry().center() -

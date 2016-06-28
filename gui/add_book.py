@@ -151,4 +151,4 @@ class BookForm(QDialog):
                         "You successfully added this book!").exec_()
         else:
             QMessageBox(QMessageBox.Information, "Add Book",
-                        "You successfully added this book!").exec_()
+                        "The book was not added!").exec_()

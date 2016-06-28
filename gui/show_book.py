@@ -42,19 +42,6 @@ class LibraryForm(QDialog):
         self.setWindowTitle("Search Book")
         self.setWindowIcon(QIcon(QPixmap('../images/icon.png')))
 
-        def information_validation(self, year, isbn):
-            return (not Validations.is_valid_year(year) or
-                not Validations.is_valid_isbn(isbn))
-
-    def error_message(self, year, isbn):
-        validations = [Validations.is_valid_year, Validations.is_valid_isbn]
-        var = [year, isbn]
-        messages = ['year', 'ISBN']
-        result = []
-        for i in range(len(var)):
-            if not validations[i](var[i]):
-                result.append(messages[i] + ',')
-        return ' '.join(result)
 
     def show_table(self, model):
         self.table = QTableView()
@@ -79,9 +66,17 @@ class LibraryForm(QDialog):
             books = select_by_genre(text)
         elif search == 'Status':
             books = select_by_status(text)
-        
-        print(books)
-        book_model = BookModel()
-        books = [Book(*book) for book in books]
-        book_model.set_books(books)
-        self.show_table(book_model)
+
+        if search == 'ISBN':
+            if not(Validations.is_valid_isbn(text)):
+                QMessageBox(QMessageBox.Critical, "Error",
+                        "Invalid ISBN: " + text + ". Please correct it!").exec_()
+        #print(books)
+        if books != []:
+            book_model = BookModel()
+            books = [Book(*book) for book in books]
+            book_model.set_books(books)
+            self.show_table(book_model)
+        else:
+            QMessageBox(QMessageBox.Critical, "Error",
+                        "Sorry. There are no results found!").exec_() 

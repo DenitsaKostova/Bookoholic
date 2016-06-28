@@ -3,6 +3,7 @@ import sys
 from functools import *
 
 VALID_YEAR = r'^\d{4}$'
+VALID_ISBN = r'^(97(8|9))?\d{9}(\d|X)$'
 
 class Validations:
     @classmethod
@@ -24,7 +25,8 @@ class Validations:
         formated_isbn = isbn.replace('-', '')
         if len(formated_isbn) == 10:
             try:
-                checksum = str(11 - (sum(int(formated_isbn[i]) * (10 - i) for i in range(8)) % 11))
+                checksum = str(11 - (sum(int(formated_isbn[i]) * (10 - i) for i in range(0,9))%11))
+         
             except ValueError:
                 return False
 
@@ -32,7 +34,7 @@ class Validations:
                 checksum = '0'  
             elif checksum == '10':
                 checksum = 'X'  
-            if checksum == isbn[9]:
+            if checksum == formated_isbn[9] and Validations.equal(VALID_ISBN, formated_isbn):
                 return True
             else:
                 return False
@@ -45,12 +47,12 @@ class Validations:
                 return False
             if checksum == '10': 
                 checksum = '0'  
-            if checksum == isbn[12]:
+            if checksum == formated_isbn[12] and Validations.equal(VALID_ISBN, formated_isbn):
                 return True
             else:
                 return False
         else:
             return False
 
-print(Validations.is_valid_isbn('9780545582957'))
-range(0,10)
+print(Validations.is_valid_isbn('9780672317248'))
+

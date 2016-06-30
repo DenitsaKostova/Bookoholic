@@ -1,3 +1,6 @@
+"""
+    Validation funkctions for ISBN and Year
+"""
 import re
 import sys
 from functools import *
@@ -54,5 +57,5 @@ class Validations:
         else:
             return False
 
-print(Validations.is_valid_isbn('9780672317248'))
+#print(Validations.is_valid_isbn('9780672317248'))
 

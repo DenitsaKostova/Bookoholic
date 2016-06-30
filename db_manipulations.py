@@ -3,6 +3,7 @@ from settings import *
 
 
 def execute_query(query):
+    #connection = sqlite3.connect("../" + DATABASE_NAME)
     connection = sqlite3.connect("../" + DATABASE_NAME)
     cursor = connection.cursor()
     cursor.execute(query)
@@ -44,16 +45,20 @@ def select_by_status(status):
     query = "SELECT * FROM " + TABLE_NAME + " WHERE status='{}'".format(status)
     return execute_query(query)
 
+def delete_by_title(title):
+    query = "Delete FROM " + TABLE_NAME + " WHERE title='{}'".format(title)
+    return execute_query(query)
+
 def delete_all():
     execute_query("Delete from " + TABLE_NAME)
 
 def select_all():
-    query = "SELECT * FROM " + TABLE_NAME
-    execute_query(query)
+    execute_query("SELECT * FROM " + TABLE_NAME + " ORDER BY title ASC" )
+
 
 #delete_all()
 #add_entry('0439554937', 'Harry Potter', 'J.K.Rowling', 2003, 'Fantasy', 4, 'very entertaining', 'read')
 #add_entry('0670026603', 'Me Before You', 'Jojo Moyes', 2012, 'Romantic', 4, 'entertaining', 'to be read')
-
+#delete_by_title('Divergent')
 #print(select_by_title("Harry Potter"))
 #print(select_all())

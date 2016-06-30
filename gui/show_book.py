@@ -1,3 +1,6 @@
+"""
+    Search form: We can search for books by: ISBN, title, author, genre or status
+"""
 import sys
 import os.path
 sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
@@ -13,12 +16,12 @@ from classes.book import Book
 from db_manipulations import *
 from book_model import *
 
-class LibraryForm(QDialog):
+class SearchForm(QDialog):
     def __init__(self):
-        super(LibraryForm, self).__init__()
+        super(SearchForm, self).__init__()
         self.initUI(self)
 
-    def initUI(self, LibraryForm):
+    def initUI(self, SearchForm):
         layout = QGridLayout(self)
 
         self.search_label = QLabel("Search book by:")

@@ -1,7 +1,9 @@
 """
-    Search form: We can search for books by: ISBN, title, author, genre or status
+    Search form: We can search for books by: ISBN,
+    title, author, genre or status
 """
 import sys
+import string
 import os.path
 sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 
@@ -15,6 +17,7 @@ from validation_utils import Validations
 from classes.book import Book
 from db_manipulations import *
 from book_model import *
+
 
 class SearchForm(QDialog):
     def __init__(self):
@@ -45,7 +48,6 @@ class SearchForm(QDialog):
         self.setWindowTitle("Search Book")
         self.setWindowIcon(QIcon(QPixmap('../images/icon.png')))
 
-
     def show_table(self, model):
         self.table = QTableView()
         self.table.setSizeAdjustPolicy(QAbstractScrollArea.AdjustToContents)
@@ -60,21 +62,18 @@ class SearchForm(QDialog):
         text = self.search_line_edit.text()
 
         if search == 'ISBN':
-            books = select_by_isbn(text)            
+            books = select_by_isbn(string.capwords(text))
         elif search == 'Title':
-            books = select_by_title(text)
+            books = select_by_title(string.capwords(text))
         elif search == 'Author':
-            books = select_by_author(text)
+            books = select_by_author(string.capwords(text))
         elif search == 'Genre':
-            books = select_by_genre(text)
-        elif search == 'Status':
-            books = select_by_status(text)
+            books = select_by_genre(string.capwords(text))
 
         if search == 'ISBN':
             if not(Validations.is_valid_isbn(text)):
                 QMessageBox(QMessageBox.Critical, "Error",
-                        "Invalid ISBN: " + text + ". Please correct it!").exec_()
-        #print(books)
+                            "Invalid ISBN. Please correct it!").exec_()
         if books != []:
             book_model = BookModel()
             books = [Book(*book) for book in books]
@@ -82,4 +81,4 @@ class SearchForm(QDialog):
             self.show_table(book_model)
         else:
             QMessageBox(QMessageBox.Critical, "Error",
-                        "Sorry. There are no results found!").exec_() 
+                        "Sorry. There are no results found!").exec_()

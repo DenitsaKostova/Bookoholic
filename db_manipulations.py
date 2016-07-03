@@ -1,9 +1,9 @@
 import sqlite3
+import string
 from settings import * 
 
 
 def execute_query(query):
-    #connection = sqlite3.connect("../" + DATABASE_NAME)
     connection = sqlite3.connect("../" + DATABASE_NAME)
     cursor = connection.cursor()
     cursor.execute(query)
@@ -13,7 +13,10 @@ def execute_query(query):
     return result
 
 def add_dummy_entry():
-    query = "INSERT INTO " + TABLE_NAME + " VALUES('123-456-789', 'Harry Potter', 'J.K.Rowling', 1997, 'Fantasy', 4, 'I liked it vary much', 'read')"
+    query = "INSERT INTO " + TABLE_NAME + " VALUES('123-456-789',\
+                                          'Harry Potter', 'J.K.Rowling',\
+                                          1997, 'Fantasy', 4,\
+                                          'I liked it vary much', 'read')"
     execute_query(query)
 
 def add_entry(isbn, title, author, year, genre, rating, review, status):
@@ -53,7 +56,7 @@ def delete_all():
     execute_query("Delete from " + TABLE_NAME)
 
 def select_all():
-    execute_query("SELECT * FROM " + TABLE_NAME + " ORDER BY title ASC" )
+    execute_query("SELECT * FROM " + TABLE_NAME + " ORDER BY title ASC")
 
 
 #delete_all()

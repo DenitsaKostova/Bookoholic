@@ -28,7 +28,8 @@ class Validations:
         formated_isbn = isbn.replace('-', '')
         if len(formated_isbn) == 10:
             try:
-                checksum = str(11 - (sum(int(formated_isbn[i]) * (10 - i) for i in range(0,9))%11))
+                checksum = str(11 - (sum(int(formated_isbn[i]) *\
+                              (10 - i) for i in range(0,9))%11))
          
             except ValueError:
                 return False

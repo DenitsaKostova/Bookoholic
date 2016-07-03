@@ -9,9 +9,9 @@ from classes.book import *
 
 COLUMNS = 8
 
-class BookModel(QAbstractItemModel):
+class WishlistModel(QAbstractItemModel):
     def __init__(self):
-        super(BookModel, self).__init__()
+        super(WishlistModel, self).__init__()
         self.books = []
 
     def set_books(self, books):
@@ -57,8 +57,7 @@ class BookModel(QAbstractItemModel):
         return QVariant()
 
     def index(self, row, column, parent=QModelIndex()):
-        if self.is_valid_row_index(row) and\
-           self.is_valid_column_index(column):
+        if self.is_valid_row_index(row) and self.is_valid_column_index(column):
             return self.createIndex(row, column)
         else:
             return QModelIndex()

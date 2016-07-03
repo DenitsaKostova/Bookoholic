@@ -41,10 +41,10 @@ class DeleteForm(QDialog):
 
     def delete_button_click(self):
         text = self.delete_line_edit.text()
-        books = select_by_title(text)
+        books = select_by_title(string.capwords(text))
 
         if books != []:
-            delete_by_title(text)
+            delete_by_title(string.capwords(text))
             QMessageBox(QMessageBox.Information, "Information",
                         "You successfully deleted thos book!").exec_()
             return

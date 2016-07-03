@@ -2,16 +2,21 @@
     A GUI form for adding a book
 """
 import sys
+import string
 import os.path
-sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 
 from PyQt5.QtCore import Qt
-from PyQt5.QtWidgets import (QLabel, QLineEdit, QPushButton,QMessageBox, QTextEdit,
-                             QComboBox, QDialog, QGridLayout, QLayout, QSlider)
+from PyQt5.QtWidgets import (QLabel, QLineEdit, QPushButton, QMessageBox,
+                             QTextEdit, QComboBox, QDialog, QGridLayout,
+                             QLayout, QSlider)
 from PyQt5.QtGui import QIcon, QPixmap
+
+sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
+
 from validation_utils import Validations
 from classes.book import Book
 from db_manipulations import add_book
+
 
 class BookForm(QDialog):
     def __init__(self):
@@ -36,36 +41,16 @@ class BookForm(QDialog):
 
         self.genre_label = QLabel("Genre:")
         self.genre_combo_box = QComboBox()
-        self.genre_combo_box.addItem("Biography")
-        self.genre_combo_box.addItem("Business")
-        self.genre_combo_box.addItem("Chick Lit")
-        self.genre_combo_box.addItem("Classics")
-        self.genre_combo_box.addItem("Comics")
-        self.genre_combo_box.addItem("Contemporary")
-        self.genre_combo_box.addItem("Crime")
-        self.genre_combo_box.addItem("Fantasy")
-        self.genre_combo_box.addItem("Fiction")
-        self.genre_combo_box.addItem("Historical Fiction")
-        self.genre_combo_box.addItem("History")
-        self.genre_combo_box.addItem("Horror")
-        self.genre_combo_box.addItem("Humor and Comedy")
-        self.genre_combo_box.addItem("Memoir")
-        self.genre_combo_box.addItem("Mystery")
-        self.genre_combo_box.addItem("Nonfiction")
-        self.genre_combo_box.addItem("Paranormal")
-        self.genre_combo_box.addItem("Philosophy")
-        self.genre_combo_box.addItem("Poetry")
-        self.genre_combo_box.addItem("Psychology")
-        self.genre_combo_box.addItem("Romance")
-        self.genre_combo_box.addItem("Science")
-        self.genre_combo_box.addItem("Science Fiction")
-        self.genre_combo_box.addItem("Self Help")
-        self.genre_combo_box.addItem("Thriller")
-        self.genre_combo_box.addItem("Travel")
-        self.genre_combo_box.addItem("Technical")
-        self.genre_combo_box.addItem("Young Adult")
-        self.genre_combo_box.addItem("Other")
-
+        self.genre_combo_box.addItems(["Biography", "Business", "Chick Lit",
+                                       "Classics", "Comics", "Contemporary",
+                                       "Crime", "Fantasy", "Fiction",
+                                       "Historical Fiction", "History",
+                                       "Horror", "Humor and Comedy", "Memoir",
+                                       "Mystery", "Nonfiction", "Paranormal",
+                                       "Philosophy", "Poetry", "Psychology",
+                                       "Romance", "Science", "Self Help",
+                                       "Science Fiction", "Thriller",
+                                       "Technical", "Young Adult", "Other"])
         self.rating_label = QLabel("Rating:")
         self.rating_slider = QSlider(Qt.Horizontal)
         self.rating_slider.setMinimum(0)
@@ -79,9 +64,7 @@ class BookForm(QDialog):
 
         self.status_label = QLabel("Status:")
         self.status_combo_box = QComboBox()
-        self.status_combo_box.addItem("Read")
-        self.status_combo_box.addItem("Currently Reading")
-        self.status_combo_box.addItem("Want to Read")
+        self.status_combo_box.addItems(["Read", "Currently Reading","Want Тo Read"])
 
         self.add_button = QPushButton("Add Book")
 
@@ -101,14 +84,13 @@ class BookForm(QDialog):
         layout.addWidget(self.review_text_edit, 6, 1)
         layout.addWidget(self.status_label, 7, 0)
         layout.addWidget(self.status_combo_box, 7, 1)
-        layout.addWidget(self.add_button, 8, 0, 1, 2,Qt.AlignCenter)
+        layout.addWidget(self.add_button, 8, 0, 1, 2, Qt.AlignCenter)
 
         self.setLayout(layout)
         self.add_button.clicked.connect(self.add_button_click)
         self.layout().setSizeConstraint(QLayout.SetFixedSize)
         self.setWindowTitle("Add Book")
         self.setWindowIcon(QIcon(QPixmap('../images/icon.png')))
-        
 
     def information_validation(self, year, isbn):
         return (not Validations.is_valid_year(year) or
@@ -141,7 +123,9 @@ class BookForm(QDialog):
                         ". Please correct it!").exec_()
             return
 
-        new_book = Book(isbn, title, author, int(year), genre, int(rating), review, status)
+        new_book = Book(isbn, string.capwords(title), string.capwords(author),
+                        int(year), string.capwords(genre), int(rating),
+                        review, string.capwords(status))
 
         if new_book in self.books:
             QMessageBox(QMessageBox.Warning, "Warning",

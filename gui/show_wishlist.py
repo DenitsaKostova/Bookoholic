@@ -45,7 +45,7 @@ class WishlistForm(QDialog):
         self.table.show()
 
     def show_wishlist_button_click(self):
-        text = 'Want to Read'
+        text = 'Want Тo Read'
         books = select_by_status(text)
         #print(books)
         wishlist_model = BookModel()

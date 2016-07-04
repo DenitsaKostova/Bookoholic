@@ -64,7 +64,9 @@ class BookForm(QDialog):
 
         self.status_label = QLabel("Status:")
         self.status_combo_box = QComboBox()
-        self.status_combo_box.addItems(["Read", "Currently Reading","Want Тo Read"])
+        self.status_combo_box.addItems(["Read",
+                                        "Currently Reading",
+                                        "Want Тo Read"])
 
         self.add_button = QPushButton("Add Book")
 

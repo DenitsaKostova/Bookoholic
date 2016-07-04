@@ -16,6 +16,7 @@ from classes.book import Book
 from db_manipulations import *
 from book_model import *
 
+
 class DeleteForm(QDialog):
     def __init__(self):
         super(DeleteForm, self).__init__()
@@ -37,7 +38,6 @@ class DeleteForm(QDialog):
         self.layout().setSizeConstraint(QLayout.SetFixedSize)
         self.setWindowTitle("Delete Book")
         self.setWindowIcon(QIcon(QPixmap('../images/icon.png')))
-
 
     def delete_button_click(self):
         text = self.delete_line_edit.text()

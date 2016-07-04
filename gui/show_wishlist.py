@@ -1,6 +1,6 @@
 """
     Shows all the books with status 'Want to Read'
-    as a Wishlist. They are automatically added when 
+    as a Wishlist. They are automatically added when
     the user adds a book
 """
 import sys
@@ -16,7 +16,8 @@ from PyQt5.QtWidgets import (QLabel, QLineEdit, QPushButton, QMessageBox,
 from validation_utils import Validations
 from classes.book import Book
 from db_manipulations import *
-from book_model import *
+from book_model import BookModel
+
 
 class WishlistForm(QDialog):
     def __init__(self):
@@ -30,7 +31,8 @@ class WishlistForm(QDialog):
         layout.addWidget(self.show_wishlist_button, 0, 1, 1, 2)
 
         self.setLayout(layout)
-        self.show_wishlist_button.clicked.connect(self.show_wishlist_button_click)
+        self.show_wishlist_button.clicked.connect(self.
+                                                  show_wishlist_button_click)
         self.layout().setSizeConstraint(QLayout.SetFixedSize)
         self.setWindowTitle("Wishlist")
         self.setWindowIcon(QIcon(QPixmap('../images/icon.png')))
@@ -47,7 +49,6 @@ class WishlistForm(QDialog):
     def show_wishlist_button_click(self):
         text = 'Want Тo Read'
         books = select_by_status(text)
-        #print(books)
         wishlist_model = BookModel()
         books = [Book(*book) for book in books]
         wishlist_model.set_books(books)

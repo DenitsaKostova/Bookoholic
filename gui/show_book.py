@@ -33,7 +33,6 @@ class SearchForm(QDialog):
         self.search_combo_box.addItem("Title")
         self.search_combo_box.addItem("Author")
         self.search_combo_box.addItem("Genre")
-        self.search_combo_box.addItem("Status")
         self.search_line_edit = QLineEdit()
         self.search_button = QPushButton("Search")
 

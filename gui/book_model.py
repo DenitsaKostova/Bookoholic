@@ -9,6 +9,7 @@ from classes.book import *
 
 COLUMNS = 8
 
+
 class BookModel(QAbstractItemModel):
     def __init__(self):
         super(BookModel, self).__init__()
@@ -32,8 +33,8 @@ class BookModel(QAbstractItemModel):
 
         book = self.books[index.row()]
 
-        getters = ('get_isbn', 'get_title', 'get_author', 'get_year', 
-        		   'get_genre', 'get_rating', 'get_review', 'get_status')
+        getters = ('get_isbn', 'get_title', 'get_author', 'get_year',
+                   'get_genre', 'get_rating', 'get_review', 'get_status')
 
         if index.column() < self.columnCount():
             return getattr(book, getters[index.column()])
@@ -53,7 +54,7 @@ class BookModel(QAbstractItemModel):
                 return QVariant()
             else:
                 return ('ISBN', 'Title', 'Author', 'Year', 'Genre',
-                		'Rating', 'Review', 'Status')[section]
+                        'Rating', 'Review', 'Status')[section]
         return QVariant()
 
     def index(self, row, column, parent=QModelIndex()):

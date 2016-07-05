@@ -1,3 +1,6 @@
+"""
+    Same as book_model and unnecesery at the moment
+"""
 import sys
 import os.path
 sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
@@ -5,7 +8,7 @@ sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 from PyQt5.QtCore import QAbstractItemModel, Qt, QVariant, QModelIndex
 from PyQt5.QtWidgets import QTableView, QAbstractScrollArea, QApplication
 
-from classes.book import *
+from book import *
 
 COLUMNS = 8
 
@@ -27,7 +30,7 @@ class WishlistModel(QAbstractItemModel):
 
     def data(self, index, role):
         if (not self.hasIndex(index.row(), index.column()) or
-           role != Qt.DisplayRole):
+            role != Qt.DisplayRole):
             return QVariant()
 
         book = self.books[index.row()]

@@ -2,8 +2,8 @@ import sys
 import os.path
 sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 
-from classes.book import Book
-from gui.book_model import BookModel, COLUMNS
+from book.book import Book
+from book.book_model import BookModel, COLUMNS
 from PyQt5.QtCore import Qt
 import unittest
 
@@ -12,9 +12,12 @@ class ModelTest(unittest.TestCase):
         unittest.TestCase.__init__(self, *args)
 
     def test_book_model(self):
-        books = [Book('9780062024039', 'Divergent', 'Veronica Roth', 2012, 'Fantasy', 3, 'NO', 'Read'), 
-                 Book('9780439554930', 'Harry Potter #1', ' J.K. Rowling', 1997, 'Fantasy', 5, 'perfe', 'Currently Reading'),
-                 Book('0450040186', 'The Shining', 'Stephen King', 1980, 'Horror' , 2, 'ok', 'Read')]
+        books = [Book('9780062024039', 'Divergent', 'Veronica Roth', 
+                       2012, 'Fantasy', 3, 'NO', 'Read'),
+                 Book('9780439554930', 'Harry Potter #1', ' J.K. Rowling', 
+                       1997, 'Fantasy', 5, 'perfe', 'Currently Reading'),
+                 Book('0450040186', 'The Shining', 'Stephen King', 
+                       1980, 'Horror' , 2, 'ok', 'Want To Read')]
 
         self.book_model = BookModel()
         self.book_model.set_books(books)
@@ -44,5 +47,3 @@ class ModelTest(unittest.TestCase):
                                  self.book_model.data(self.book_model.index(
                                                       row, column),
                                                       Qt.DisplayRole))
-
-    

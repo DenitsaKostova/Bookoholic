@@ -12,9 +12,9 @@ from PyQt5.QtWidgets import (QLabel, QLineEdit, QPushButton, QMessageBox,
                              QAbstractScrollArea, QComboBox)
 
 from validation_utils import Validations
-from classes.book import Book
+from book.book import Book
 from db_manipulations import *
-from book_model import *
+from book.book_model import *
 
 
 class DeleteForm(QDialog):

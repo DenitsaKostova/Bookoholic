@@ -68,4 +68,4 @@ def delete_all():
 
 
 def select_all():
-    execute_query("SELECT * FROM " + TABLE_NAME + " ORDER BY title ASC")
+    execute_query("SELECT * FROM " + TABLE_NAME)

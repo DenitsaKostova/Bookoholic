@@ -11,9 +11,9 @@ from PyQt5.QtWidgets import (QLabel, QLineEdit, QPushButton, QMessageBox,
                              QDialog, QGridLayout, QLayout, QTableView,
                              QAbstractScrollArea, QComboBox)
 
-from classes.book import Book
+from book.book import Book
 from db_manipulations import *
-from book_model import *
+from book.book_model import *
 
 
 class LibraryForm(QDialog):

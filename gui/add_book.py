@@ -14,8 +14,8 @@ from PyQt5.QtGui import QIcon, QPixmap
 sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 
 from validation_utils import Validations
-from classes.book import Book
-from db_manipulations import add_book
+from book.book import Book
+from db_manipulations import *
 
 
 class BookForm(QDialog):
@@ -140,4 +140,4 @@ class BookForm(QDialog):
                         "You successfully added this book!").exec_()
         else:
             QMessageBox(QMessageBox.Information, "Add Book",
-                        "You successfully added this book!").exec_()
+                        "The book was NOT successfully added!").exec_()

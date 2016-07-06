@@ -2,8 +2,8 @@ import sys
 import os.path
 sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 
-from book.book import Book
-from book.book_model import BookModel, COLUMNS
+from bookoholic.book.book import Book
+from bookoholic.book.book_model import BookModel, COLUMNS
 from PyQt5.QtCore import Qt
 import unittest
 

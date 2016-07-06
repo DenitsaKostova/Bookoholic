@@ -2,7 +2,7 @@ import sys
 import os.path
 sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 import unittest
-from book.book import Book
+from bookoholic.book.book import Book
 
 
 class BookTest(unittest.TestCase):

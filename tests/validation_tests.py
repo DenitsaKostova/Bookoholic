@@ -3,7 +3,7 @@ import os.path
 sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 
 import unittest
-from validation_utils import Validations
+from bookoholic.validation_utils import Validations
 
 
 class ValidationTest(unittest.TestCase):

@@ -8,10 +8,12 @@ from PyQt5.QtWidgets import (QMainWindow, QApplication, QVBoxLayout,
                              QMessageBox, QTableView, QAbstractScrollArea)
 
 from add_book import BookForm
+from edit_book import EditForm
 from delete_book import DeleteForm
 from show_book import SearchForm
 from show_library import LibraryForm
 from show_wishlist import WishlistForm
+from login import LoginForm
 
 sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 
@@ -41,6 +43,16 @@ class MainWindow(QMainWindow):
         menubar = self.menuBar()
 
         """
+            Login Menu - Goodreads Profile
+        """
+        book_menu = menubar.addMenu('&Login')
+        login_action = QAction(QIcon('../images/login.png'),
+                                '&Goodreads profile', self)
+        login_action.setStatusTip('Login to Goodreads profile (optional)')
+        login_action.triggered.connect(self.login_form_load)
+        book_menu.addAction(login_action)
+
+        """
             Books Menu - add / delete book
         """
         book_menu = menubar.addMenu('&Books')
@@ -49,6 +61,13 @@ class MainWindow(QMainWindow):
         add_book_action.setStatusTip('Add a new book to the library')
         add_book_action.triggered.connect(self.add_book_form_load)
         book_menu.addAction(add_book_action)
+
+        edit_book_action = QAction(QIcon('../images/edit.png'),
+                                  '&Edit Book', self)
+        edit_book_action.setStatusTip('Edit an existing book.')
+        edit_book_action.triggered.connect(self.edit_book_form_load)
+        book_menu.addAction(edit_book_action)
+        
         delete_book_action = QAction(QIcon('../images/delete.png'),
                                      '&Delete Book', self)
         delete_book_action.setStatusTip('Delete a book from the library')
@@ -89,9 +108,17 @@ class MainWindow(QMainWindow):
         self.move(QDesktopWidget().availableGeometry().center() -
                   self.frameGeometry().center())
 
+    def login_form_load(self):
+        self.login_form_load = LoginForm()
+        self.login_form_load.show()
+
     def add_book_form_load(self):
         self.add_book_form_load = BookForm()
         self.add_book_form_load.show()
+
+    def edit_book_form_load(self):
+        self.edit_book_form_load = EditForm()
+        self.edit_book_form_load.show()
 
     def delete_book_form_load(self):
         self.delete_book_form_load = DeleteForm()

@@ -25,7 +25,7 @@ class BookForm(QDialog):
 
     def initUI(self, BookForm):
         layout = QGridLayout(self)
-        self.books = []
+        self.books = [] # TODO load objects from DB
 
         self.isbn_label = QLabel("ISBN:")
         self.isbn_line_edit = QLineEdit()
@@ -135,9 +135,9 @@ class BookForm(QDialog):
             return
 
         self.books.append(new_book)
-        if add_book(new_book):
+        if add_book(new_book) != None:
             QMessageBox(QMessageBox.Information, "Add Book",
                         "You successfully added this book!").exec_()
         else:
             QMessageBox(QMessageBox.Information, "Add Book",
-                        "The book was NOT successfully added!").exec_()
+                        "The book was NOT added! Please try again.").exec_() #error

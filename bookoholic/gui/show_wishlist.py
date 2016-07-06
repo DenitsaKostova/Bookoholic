@@ -49,7 +49,13 @@ class WishlistForm(QDialog):
     def show_wishlist_button_click(self):
         text = 'Want Тo Read'
         books = select_by_status(text)
-        wishlist_model = BookModel()
-        books = [Book(*book) for book in books]
-        wishlist_model.set_books(books)
-        self.show_table(wishlist_model)
+
+        if books == []:
+            QMessageBox(QMessageBox.Warning, "Error",
+                        "There are no books in the wishlist!").exec_()
+            return
+        else:
+            wishlist_model = BookModel()
+            books = [Book(*book) for book in books]
+            wishlist_model.set_books(books)
+            self.show_table(wishlist_model)

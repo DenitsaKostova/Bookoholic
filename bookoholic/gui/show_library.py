@@ -44,27 +44,16 @@ class LibraryForm(QDialog):
 
     def show_lib_button_click(self):
         books = select_all()
-        book_model = BookModel()
-        books = [Book(*book) for book in books]
-        book_model.set_books(books)
-        self.show_table(book_model)
-
-        """if books == []:
+        
+        if books == []:
             QMessageBox(QMessageBox.Warning, "Error",
                         "There are no books in the library!").exec_()
             return
+        else:
+            book_model = BookModel()
+            books = [Book(*book) for book in books]
+            book_model.set_books(books)
+            self.show_table(book_model)
 
-        books = select_all()
-        if books == []:
-            QMessageBox(QMessageBox.Warning, "Show Library",
-                        "There are no books in the library!!!").exec_()
-            return
-        self.show_table = QTableView()
-        self.show_table.setSizeAdjustPolicy(
-            QAbstractScrollArea.AdjustToContents)
-        self.book_model = BookModel()
-        self.book_model.set_books(books)
-        self.proxy_model = QSortFilterProxyModel()
-        self.proxy_model.setSourceModel(self.book_model)
-        self.set_books(books)
-        """
+        
+        

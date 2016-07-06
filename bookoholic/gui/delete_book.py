@@ -46,9 +46,9 @@ class DeleteForm(QDialog):
         if books != []:
             delete_by_title(string.capwords(text))
             QMessageBox(QMessageBox.Information, "Information",
-                        "You successfully deleted thos book!").exec_()
+                        "You successfully deleted this book!").exec_()
             return
         else:
-            QMessageBox(QMessageBox.Warning, "Error",
+            QMessageBox(QMessageBox.Error, "Error",
                         "There is no such book in the library!").exec_()
             return

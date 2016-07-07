@@ -61,6 +61,9 @@ class SearchForm(QDialog):
         text = self.search_line_edit.text()
 
         if search == 'ISBN':
+            if not(Validations.is_valid_isbn(text)):
+                QMessageBox(QMessageBox.Critical, "Error",
+                            "Invalid ISBN. Please correct it!").exec_()
             books = select_by_isbn(string.capwords(text))
         elif search == 'Title':
             books = select_by_title(string.capwords(text))
@@ -69,15 +72,11 @@ class SearchForm(QDialog):
         elif search == 'Genre':
             books = select_by_genre(string.capwords(text))
 
-        if search == 'ISBN':
-            if not(Validations.is_valid_isbn(text)):
-                QMessageBox(QMessageBox.Critical, "Error",
-                            "Invalid ISBN. Please correct it!").exec_()
         if books != []:
             book_model = BookModel()
             books = [Book(*book) for book in books]
             book_model.set_books(books)
             self.show_table(book_model)
         else:
-            QMessageBox(QMessageBox.Critical, "Error",
+            QMessageBox(QMessageBox.Information, "No results",
                         "Sorry. There are no results found!").exec_()

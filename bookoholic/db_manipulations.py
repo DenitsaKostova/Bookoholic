@@ -12,6 +12,7 @@ def execute_query(query):
     connection.close()
     return result
 
+
 def is_query_passing(query):
     connection = sqlite3.connect("../" + DATABASE_NAME)
     cursor = connection.cursor()
@@ -22,6 +23,7 @@ def is_query_passing(query):
         return True
     except:
         return False
+
 
 def add_dummy_entry():
     query = "INSERT INTO " + TABLE_NAME + " VALUES('123-456-789',\
@@ -41,6 +43,11 @@ def add_entry(isbn, title, author, year, genre, rating, review, status):
 def add_book(book):
     return add_entry(book.isbn, book.title, book.author, book.year,
               book.genre, book.rating, book.review, book.status)
+
+
+def select_isbn_column():
+    query = "SELECT isbn FROM " + TABLE_NAME
+    return execute_query(query)
 
 
 def select_by_isbn(isbn):
@@ -67,9 +74,16 @@ def select_by_status(status):
     query = "SELECT * FROM " + TABLE_NAME + " WHERE status='{}'".format(status)
     return execute_query(query)
 
+
 def update_entry(title, rating, review, status):
-    query = "Update " + TABLE_NAME + " SET rating={}, review='{}', status='{}' ".format (rating, review, status) + "WHERE title='{}'".format(title)
+    query = "Update " + TABLE_NAME + " SET rating={}, review='{}', status='{}'"\
+            .format (rating, review, status) + " WHERE title='{}'".format(title)
     return is_query_passing(query)
+
+
+def delete_by_isbn(isbn):
+    query = "Delete FROM " + TABLE_NAME + " WHERE isbn='{}'".format(isbn)
+    return execute_query(query)
 
 
 def delete_by_title(title):

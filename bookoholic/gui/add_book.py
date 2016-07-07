@@ -118,26 +118,33 @@ class BookForm(QDialog):
         review = self.review_text_edit.toPlainText()
         status = self.status_combo_box.currentText()
 
-        if self.information_validation(year, isbn):
-            error_message = self.error_message(year, isbn)
-            QMessageBox(QMessageBox.Critical, "Error",
-                        "Invalid " + error_message[:len(error_message) - 1] +
-                        ". Please correct it!").exec_()
-            return
+        try:
+            if self.information_validation(year, isbn):
+                error_message = self.error_message(year, isbn)
+                QMessageBox(QMessageBox.Critical, "Error",
+                            "Invalid " + error_message[:len(error_message) - 1] +
+                            ". Please correct it!").exec_()
+                return
 
-        new_book = Book(isbn, string.capwords(title), string.capwords(author),
-                        int(year), string.capwords(genre), int(rating),
-                        review, string.capwords(status))
+            new_book = Book(isbn, string.capwords(title), 
+                            string.capwords(author), int(year), 
+                            string.capwords(genre), int(rating),
+                            review, string.capwords(status))
 
-        if new_book in self.books:
-            QMessageBox(QMessageBox.Warning, "Warning",
-                        "You have already added this book!").exec_()
-            return
+            if new_book in self.books:
+                QMessageBox(QMessageBox.Warning, "Warning",
+                            "You have already added this book!").exec_()
+                return
 
-        self.books.append(new_book)
-        if add_book(new_book) != None:
+            self.books.append(new_book)
+            if add_book(new_book) != None:
+                QMessageBox(QMessageBox.Information, "Add Book",
+                            "You successfully added this book!").exec_()
+            else:
+                QMessageBox(QMessageBox.Information, "Information",
+                            "The book was NOT added!" +
+                            "Please try again.").exec_()
+        except:
             QMessageBox(QMessageBox.Information, "Add Book",
-                        "You successfully added this book!").exec_()
-        else:
-            QMessageBox(QMessageBox.Information, "Add Book",
-                        "The book was NOT added! Please try again.").exec_() #error
+                        "ISBN must be unique.").exec_()
+

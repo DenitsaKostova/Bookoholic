@@ -1,9 +1,10 @@
 """
-    A GUI form for editing a book
+    A GUI form for editing a book's rating, review, status
 """
 import sys
 import string
 import os.path
+import string
 
 from PyQt5.QtCore import Qt
 from PyQt5.QtWidgets import (QLabel, QLineEdit, QPushButton, QMessageBox,
@@ -69,12 +70,12 @@ class EditForm(QDialog):
         review = self.review_text_edit.toPlainText()
         status = self.status_combo_box.currentText()
 
-        if update_entry(title, rating, review, status):
-            QMessageBox(QMessageBox.Information, "Edit Book",
-                        "You successfully updated the info about this book!").exec_()
+        if update_entry(string.capwords(title), rating, review, status):
+            QMessageBox(QMessageBox.Information, "Updated book info",
+                        "You updated the info about this book!").exec_()
         else:
-            QMessageBox(QMessageBox.Information, "Edit Book",
-                        "The book was NOT edited! Please try again.").exec_() #error
+            QMessageBox(QMessageBox.Information, "Information",
+                        "The book was NOT edited! Please try again.").exec_()
 
   
         

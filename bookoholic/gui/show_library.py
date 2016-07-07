@@ -46,7 +46,7 @@ class LibraryForm(QDialog):
         books = select_all()
         
         if books == []:
-            QMessageBox(QMessageBox.Warning, "Error",
+            QMessageBox(QMessageBox.Information, "No results",
                         "There are no books in the library!").exec_()
             return
         else:

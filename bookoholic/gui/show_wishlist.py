@@ -51,7 +51,7 @@ class WishlistForm(QDialog):
         books = select_by_status(text)
 
         if books == []:
-            QMessageBox(QMessageBox.Warning, "Error",
+            QMessageBox(QMessageBox.Information, "No results",
                         "There are no books in the wishlist!").exec_()
             return
         else:

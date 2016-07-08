@@ -1,3 +1,5 @@
 TABLE_NAME = "BooksInfo"
 DATABASE_NAME = "booktable.db"
 TEST_DATABASE_NAME = "test.db"
+KEY = "As4NXdJdWRDThiPof5DYQA"
+SECRET = "etnTSTDe9PxPLWPN0NvdnGwdJ3wFv9UuNA9M3FvM"

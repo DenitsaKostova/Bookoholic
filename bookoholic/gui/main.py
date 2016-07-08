@@ -13,7 +13,8 @@ from delete_book import DeleteForm
 from show_book import SearchForm
 from show_library import LibraryForm
 from show_wishlist import WishlistForm
-from login import LoginForm
+from goodreads_id_search import IdSearchForm
+
 
 sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 
@@ -45,11 +46,11 @@ class MainWindow(QMainWindow):
         """
             Login Menu - Goodreads Profile
         """
-        book_menu = menubar.addMenu('&Login')
+        book_menu = menubar.addMenu('&Goodreads')
         login_action = QAction(QIcon('../images/login.png'),
                                '&Goodreads profile', self)
         login_action.setStatusTip('Login to Goodreads profile (optional)')
-        login_action.triggered.connect(self.login_form_load)
+        login_action.triggered.connect(self.goodreads_form_load)
         book_menu.addAction(login_action)
 
         """
@@ -108,9 +109,9 @@ class MainWindow(QMainWindow):
         self.move(QDesktopWidget().availableGeometry().center() -
                   self.frameGeometry().center())
 
-    def login_form_load(self):
-        self.login_form_load = LoginForm()
-        self.login_form_load.show()
+    def goodreads_form_load(self):
+        self.goodreads_form_load = IdSearchForm()
+        self.goodreads_form_load.show()
 
     def add_book_form_load(self):
         self.add_book_form_load = BookForm()

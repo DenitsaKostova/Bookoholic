@@ -45,11 +45,6 @@ def add_book(book):
               book.genre, book.rating, book.review, book.status)
 
 
-def select_isbn_column():
-    query = "SELECT isbn FROM " + TABLE_NAME
-    return execute_query(query)
-
-
 def select_by_isbn(isbn):
     query = "SELECT * FROM " + TABLE_NAME + " WHERE isbn='{}'".format(isbn)
     return execute_query(query)

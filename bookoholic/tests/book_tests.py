@@ -2,7 +2,7 @@ import sys
 import os.path
 sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 import unittest
-from bookoholic.book.book import Book
+from book.book import Book
 
 
 class BookTest(unittest.TestCase):
@@ -19,18 +19,7 @@ class BookTest(unittest.TestCase):
         self.assertTrue(book.get_rating, int)
         self.assertTrue(book.get_review, str)
         self.assertTrue(book.get_status, str)
-
-    def test_decorator(self):
-        book = Book('9780062024039', 'Divergent', 'Veronica Roth', 2012, 'Fantasy', 3, 'NO', 'Read')
-        self.assertRaises(AttributeError, get_isbn='1280062024039')
-        self.assertRaises(AttributeError, get_title='Hello')
-        self.assertRaises(AttributeError, get_author='Veronica Potter')
-        self.assertRaises(AttributeError, get_year=2013)
-        self.assertRaises(AttributeError, get_genre='Other')
-        self.assertRaises(AttributeError, get_rating=2)
-        self.assertRaises(AttributeError, get_review="Lqlqlq")
-        self.assertRaises(AttributeError, get_status="Reading")
-    
+  
 
     def test_init(self):
         book = Book('9780062024039', 'Divergent', 'Veronica Roth', 2012, 'Fantasy', 3, 'NO', 'Read')

@@ -70,12 +70,16 @@ class EditForm(QDialog):
         review = self.review_text_edit.toPlainText()
         status = self.status_combo_box.currentText()
 
-        if update_entry(string.capwords(title), rating, review, status):
-            QMessageBox(QMessageBox.Information, "Updated book info",
-                        "You updated the info about this book!").exec_()
+        if select_by_title(string.capwords(title)) == []:
+            QMessageBox(QMessageBox.Critical, "Error",
+                        "There is no such book in the library!").exec_()
         else:
-            QMessageBox(QMessageBox.Information, "Information",
-                        "The book was NOT edited! Please try again.").exec_()
+            if update_entry(string.capwords(title), rating, review, status):
+                QMessageBox(QMessageBox.Information, "Updated book info",
+                            "You updated the info about this book!").exec_()
+            else:
+                QMessageBox(QMessageBox.Information, "Information",
+                            "The book was NOT edited! Please try again.").exec_()
 
   
         

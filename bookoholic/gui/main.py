@@ -67,7 +67,7 @@ class MainWindow(QMainWindow):
         edit_book_action.setStatusTip('Edit an existing book.')
         edit_book_action.triggered.connect(self.edit_book_form_load)
         book_menu.addAction(edit_book_action)
-        
+
         delete_book_action = QAction(QIcon('../images/delete.png'),
                                      '&Delete Book', self)
         delete_book_action.setStatusTip('Delete a book from the library')

@@ -42,4 +42,3 @@ class GoodReadsClient():
         url_handler = self.unauthorized_request(url, query_params)
 
         return self.parser.parse_books(url_handler)
-

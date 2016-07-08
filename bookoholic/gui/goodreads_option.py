@@ -40,9 +40,8 @@ class GoodreadsOptionsForm(QDialog):
         self.setWindowTitle("Search Books")
         self.setWindowIcon(QIcon(QPixmap('../images/search.png')))
 
-
     def show_user_shelf(self, user_id, shelf):
-        goodreads_shelf = shelf 
+        goodreads_shelf = shelf
         client = GoodReadsClient(KEY, SECRET)
         books = client.get_shelf(user_id, goodreads_shelf)
         view_books = []
@@ -54,7 +53,8 @@ class GoodreadsOptionsForm(QDialog):
             year = book["published"]
             author = book["authors"][0]["name"]
             rating = book["average_rating"]
-            view_books.append((isbn, title, author, year, rating, goodreads_url))
+            view_books.append((isbn, title, author, year,
+                               rating, goodreads_url))
 
         if view_books != []:
             book_model = GoodReadsBookModel()
@@ -73,11 +73,10 @@ class GoodreadsOptionsForm(QDialog):
         self.table.setWindowIcon(QIcon(QPixmap('../images/icon.png')))
         self.table.setModel(model)
         self.table.resizeColumnsToContents()
-        self.table.show()    
-
+        self.table.show()
 
     def search_button_click(self):
-        option = self.search_combo_box.currentText()    
+        option = self.search_combo_box.currentText()
         shelf = ""
         if option == 'Read':
             shelf = "read"

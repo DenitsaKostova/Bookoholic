@@ -1,6 +1,3 @@
-"""
-    A GUI form for loging in to Goodreads profile(optional)
-"""
 import sys
 import string
 import os.path
@@ -13,6 +10,7 @@ from PyQt5.QtGui import QIcon, QPixmap
 from goodreads_option import *
 
 sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
+
 
 class IdSearchForm(QDialog):
     def __init__(self):
@@ -39,5 +37,10 @@ class IdSearchForm(QDialog):
 
     def login_button_click(self):
         user = self.user_line_edit.text()
-        self.options_form_load = GoodreadsOptionsForm(user)
-        self.options_form_load.show()        
+        if user.isdigit():
+            self.options_form_load = GoodreadsOptionsForm(user)
+            self.options_form_load.show()
+        else:
+            QMessageBox(QMessageBox.Critical, "Error",
+                        "ID must be numeric.").exec_()
+            return

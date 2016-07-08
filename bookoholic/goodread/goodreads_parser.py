@@ -27,7 +27,6 @@ class GoodReadsParser(object):
         value = value.strip() if value else None
         return value
 
-
     def parse_books(self, url_handler):
         goodreads_dom = self.parse_result(url_handler)
         books = []
@@ -36,7 +35,6 @@ class GoodReadsParser(object):
             if book:
                 books.append(book)
         return books
-
 
     def handle_book(self, book_element):
         book = {}
@@ -47,7 +45,7 @@ class GoodReadsParser(object):
                 continue
             elif child_node.nodeName == "authors":
                 value = self.handle_authors(child_node)
-            elif  child_node.nodeName == "shelves":
+            elif child_node.nodeName == "shelves":
                 continue
             else:
                 value = self.get_text(child_node)

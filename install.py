@@ -1,5 +1,5 @@
 import sqlite3
-from settings import *
+from bookoholic.settings import *
 
 def create_table():
     connection = sqlite3.connect(DATABASE_NAME)

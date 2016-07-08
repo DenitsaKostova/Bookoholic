@@ -1,6 +1,6 @@
 """
-    Search form: We can search for books by: ISBN,
-    title, author, genre or status
+    A GUI form for searching for books by: ISBN,
+    title, author or genre
 """
 import sys
 import string
@@ -45,7 +45,7 @@ class SearchForm(QDialog):
         self.search_button.clicked.connect(self.search_button_click)
         self.layout().setSizeConstraint(QLayout.SetFixedSize)
         self.setWindowTitle("Search Book")
-        self.setWindowIcon(QIcon(QPixmap('../images/icon.png')))
+        self.setWindowIcon(QIcon(QPixmap('../images/search.png')))
 
     def show_table(self, model):
         self.table = QTableView()

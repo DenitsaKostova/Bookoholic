@@ -1,17 +1,16 @@
 """
-    A GUI form for adding a book
+    A GUI form for adding a book into the library
 """
 import sys
 import string
 import os.path
+sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 
 from PyQt5.QtCore import Qt
 from PyQt5.QtWidgets import (QLabel, QLineEdit, QPushButton, QMessageBox,
                              QTextEdit, QComboBox, QDialog, QGridLayout,
                              QLayout, QSlider)
 from PyQt5.QtGui import QIcon, QPixmap
-
-sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 
 from validation_utils import Validations
 from book.book import Book
@@ -25,7 +24,7 @@ class BookForm(QDialog):
 
     def initUI(self, BookForm):
         layout = QGridLayout(self)
-        self.books = [] # TODO load objects from DB
+        self.books = []
 
         self.isbn_label = QLabel("ISBN:")
         self.isbn_line_edit = QLineEdit()
@@ -92,7 +91,7 @@ class BookForm(QDialog):
         self.add_button.clicked.connect(self.add_button_click)
         self.layout().setSizeConstraint(QLayout.SetFixedSize)
         self.setWindowTitle("Add Book")
-        self.setWindowIcon(QIcon(QPixmap('../images/icon.png')))
+        self.setWindowIcon(QIcon(QPixmap('../images/add.png')))
 
     def information_validation(self, year, isbn):
         return (not Validations.is_valid_year(year) or
@@ -121,13 +120,13 @@ class BookForm(QDialog):
         try:
             if self.information_validation(year, isbn):
                 error_message = self.error_message(year, isbn)
-                QMessageBox(QMessageBox.Critical, "Error",
-                            "Invalid " + error_message[:len(error_message) - 1] +
+                QMessageBox(QMessageBox.Critical, "Error", "Invalid " +
+                            error_message[:len(error_message) - 1] +
                             ". Please correct it!").exec_()
                 return
 
-            new_book = Book(isbn, string.capwords(title), 
-                            string.capwords(author), int(year), 
+            new_book = Book(isbn, string.capwords(title),
+                            string.capwords(author), int(year),
                             string.capwords(genre), int(rating),
                             review, string.capwords(status))
 
@@ -147,4 +146,3 @@ class BookForm(QDialog):
         except:
             QMessageBox(QMessageBox.Information, "Add Book",
                         "ISBN must be unique.").exec_()
-

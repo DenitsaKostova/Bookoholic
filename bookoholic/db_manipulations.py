@@ -1,3 +1,6 @@
+"""
+    Database manipulations
+"""
 import sqlite3
 import string
 from settings import *
@@ -42,7 +45,7 @@ def add_entry(isbn, title, author, year, genre, rating, review, status):
 
 def add_book(book):
     return add_entry(book.isbn, book.title, book.author, book.year,
-              book.genre, book.rating, book.review, book.status)
+                     book.genre, book.rating, book.review, book.status)
 
 
 def select_by_isbn(isbn):
@@ -71,8 +74,10 @@ def select_by_status(status):
 
 
 def update_entry(title, rating, review, status):
-    query = "Update " + TABLE_NAME + " SET rating={}, review='{}', status='{}'"\
-            .format (rating, review, status) + " WHERE title='{}'".format(title)
+    query = "Update " + TABLE_NAME +\
+            " SET rating={}, review='{}', status='{}'"\
+            .format(rating, review, status) + " WHERE title='{}'"\
+            .format(title)
     return is_query_passing(query)
 
 

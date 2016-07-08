@@ -47,7 +47,7 @@ class MainWindow(QMainWindow):
         """
         book_menu = menubar.addMenu('&Login')
         login_action = QAction(QIcon('../images/login.png'),
-                                '&Goodreads profile', self)
+                               '&Goodreads profile', self)
         login_action.setStatusTip('Login to Goodreads profile (optional)')
         login_action.triggered.connect(self.login_form_load)
         book_menu.addAction(login_action)
@@ -63,7 +63,7 @@ class MainWindow(QMainWindow):
         book_menu.addAction(add_book_action)
 
         edit_book_action = QAction(QIcon('../images/edit.png'),
-                                  '&Edit Book', self)
+                                   '&Edit Book', self)
         edit_book_action.setStatusTip('Edit an existing book.')
         edit_book_action.triggered.connect(self.edit_book_form_load)
         book_menu.addAction(edit_book_action)

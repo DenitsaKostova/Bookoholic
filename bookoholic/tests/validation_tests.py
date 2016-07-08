@@ -26,4 +26,3 @@ class ValidationTest(unittest.TestCase):
         self.assertTrue(Validations.is_valid_isbn('9781400064755'))
         self.assertTrue(Validations.is_valid_isbn('1400064759'))
         self.assertTrue(Validations.is_valid_isbn('9780316015844'))
-       

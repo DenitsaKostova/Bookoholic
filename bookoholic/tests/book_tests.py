@@ -10,7 +10,8 @@ class BookTest(unittest.TestCase):
         unittest.TestCase.__init__(self, *args)
 
     def test_types(self):
-        book = Book('9780062024039', 'Divergent', 'Veronica Roth', 2012, 'Fantasy', 3, 'NO', 'Read')
+        book = Book('9780062024039', 'Divergent', 'Veronica Roth',
+                    2012, 'Fantasy', 3, 'NO', 'Read')
         self.assertTrue(book.get_isbn, str)
         self.assertTrue(book.get_title, str)
         self.assertTrue(book.get_author, str)
@@ -19,10 +20,10 @@ class BookTest(unittest.TestCase):
         self.assertTrue(book.get_rating, int)
         self.assertTrue(book.get_review, str)
         self.assertTrue(book.get_status, str)
-  
 
     def test_init(self):
-        book = Book('9780062024039', 'Divergent', 'Veronica Roth', 2012, 'Fantasy', 3, 'NO', 'Read')
+        book = Book('9780062024039', 'Divergent', 'Veronica Roth',
+                    2012, 'Fantasy', 3, 'NO', 'Read')
         self.assertEqual(book.get_isbn, '9780062024039')
         self.assertNotEqual(book.get_isbn, '1780062024039')
         self.assertEqual(book.get_title, 'Divergent')

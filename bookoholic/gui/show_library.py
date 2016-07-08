@@ -31,7 +31,7 @@ class LibraryForm(QDialog):
         self.show_lib_button.clicked.connect(self.show_lib_button_click)
         self.layout().setSizeConstraint(QLayout.SetFixedSize)
         self.setWindowTitle("Library")
-        self.setWindowIcon(QIcon(QPixmap('../images/icon.png')))
+        self.setWindowIcon(QIcon(QPixmap('../images/library.png')))
 
     def show_table(self, model):
         self.table = QTableView()
@@ -44,7 +44,6 @@ class LibraryForm(QDialog):
 
     def show_lib_button_click(self):
         books = select_all()
-        
         if books == []:
             QMessageBox(QMessageBox.Information, "No results",
                         "There are no books in the library!").exec_()
@@ -54,6 +53,3 @@ class LibraryForm(QDialog):
             books = [Book(*book) for book in books]
             book_model.set_books(books)
             self.show_table(book_model)
-
-        
-        

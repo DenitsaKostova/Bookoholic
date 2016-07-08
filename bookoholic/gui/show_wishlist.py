@@ -35,7 +35,7 @@ class WishlistForm(QDialog):
                                                   show_wishlist_button_click)
         self.layout().setSizeConstraint(QLayout.SetFixedSize)
         self.setWindowTitle("Wishlist")
-        self.setWindowIcon(QIcon(QPixmap('../images/icon.png')))
+        self.setWindowIcon(QIcon(QPixmap('../images/whish.png')))
 
     def show_table(self, model):
         self.table = QTableView()

@@ -1,7 +1,11 @@
+"""
+    Main class
+"""
 import sqlite3
 import sys
 import os.path
 sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
+
 
 class Book:
     def __init__(self, *attrs):
@@ -40,23 +44,21 @@ class Book:
 
     @property
     def get_review(self):
-        return self.review    
+        return self.review
 
     @property
     def get_status(self):
         return self.status
-        
+
     def __conform__(self, protocol):
         if protocol is sqlite3.PrepareProtocol:
             return "%s;%s;%s;%s;%s;%s,%s,%s" % (self.isbn, self.title,
-                                          self.author, self.year,
-                                          self.genre, self.rating, 
-                                          self.review, self.status)
+                                                self.author, self.year,
+                                                self.genre, self.rating,
+                                                self.review, self.status)
 
     def __str__(self):
         return (self.isbn + ' ' + self.title + ' ' +
-                self.author + ' ' + str(self.year) + ' ' + 
+                self.author + ' ' + str(self.year) + ' ' +
                 self.genre + ' ' + str(self.rating) + ' ' +
                 self.review + ' ' + self.status)
-
-    

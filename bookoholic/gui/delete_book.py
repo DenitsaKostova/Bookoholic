@@ -1,5 +1,5 @@
 """
-    A GUI Form for deleting a book by isbn or title
+    A GUI Form for deleting a book from the library by isbn or title
 """
 import sys
 import os.path
@@ -42,30 +42,33 @@ class DeleteForm(QDialog):
         self.delete_button.clicked.connect(self.delete_button_click)
         self.layout().setSizeConstraint(QLayout.SetFixedSize)
         self.setWindowTitle("Delete Book")
-        self.setWindowIcon(QIcon(QPixmap('../images/icon.png')))
+        self.setWindowIcon(QIcon(QPixmap('../images/delete.png')))
 
     def delete_button_click(self):
         search = self.delete_combo_box.currentText()
         text = self.delete_line_edit.text()
-        
         if search == 'ISBN':
             if not(Validations.is_valid_isbn(text)):
                 QMessageBox(QMessageBox.Critical, "Error",
                             "Invalid ISBN. Please correct it!").exec_()
-            books = select_by_isbn(string.capwords(text))
+            books = select_by_isbn(text)
             if books != []:
-                delete_by_isbn(string.capwords(text))
+                delete_by_isbn(text)
                 QMessageBox(QMessageBox.Information, "Information",
                             "You successfully deleted this book!").exec_()
+                return
+            else:
+                QMessageBox(QMessageBox.Information, "No results",
+                            "There is NO such book in the library!").exec_()
                 return
         elif search == 'Title':
             books = select_by_title(string.capwords(text))
             if books != []:
                 delete_by_title(string.capwords(text))
                 QMessageBox(QMessageBox.Information, "Information",
-                        "You successfully deleted this book!").exec_()
+                            "You successfully deleted this book!").exec_()
                 return
-        else:
-            QMessageBox(QMessageBox.Information, "No results",
-                        "There is NO such book in the library!").exec_()
-            return
+            else:
+                QMessageBox(QMessageBox.Information, "No results",
+                            "There is NO such book in the library!").exec_()
+                return

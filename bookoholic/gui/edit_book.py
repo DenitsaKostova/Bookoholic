@@ -1,5 +1,5 @@
 """
-    A GUI form for editing a book's rating, review, status
+    A GUI form for editing a book's rating, review and status
 """
 import sys
 import string
@@ -45,7 +45,6 @@ class EditForm(QDialog):
         self.status_combo_box.addItems(["Read",
                                         "Currently Reading",
                                         "Want Тo Read"])
-        
         self.edit_button = QPushButton("Edit book")
 
         layout.addWidget(self.title_label, 0, 0)
@@ -62,7 +61,7 @@ class EditForm(QDialog):
         self.edit_button.clicked.connect(self.edit_button_click)
         self.layout().setSizeConstraint(QLayout.SetFixedSize)
         self.setWindowTitle("Edit Book")
-        self.setWindowIcon(QIcon(QPixmap('../images/icon.png')))
+        self.setWindowIcon(QIcon(QPixmap('../images/edit.png')))
 
     def edit_button_click(self):
         title = self.title_line_edit.text()
@@ -79,7 +78,8 @@ class EditForm(QDialog):
                             "You updated the info about this book!").exec_()
             else:
                 QMessageBox(QMessageBox.Information, "Information",
-                            "The book was NOT edited! Please try again.").exec_()
+                            "The book was NOT edited! Try again.").exec_()
+
 
   
         

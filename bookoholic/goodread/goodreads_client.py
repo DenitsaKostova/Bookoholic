@@ -12,7 +12,7 @@ class GoodReadsClient():
         self.secret = secret
         self.parser = GoodReadsParser()
 
-    def unauthorized_request(self, base_url, query_params):
+    def get_resource(self, base_url, query_params):
         if "key" not in query_params:
             query_params["key"] = self.key
         if "per_page" not in query_params:
@@ -39,6 +39,6 @@ class GoodReadsClient():
             "v": 2,
         }
 
-        url_handler = self.unauthorized_request(url, query_params)
+        url_handler = self.get_resource(url, query_params)
 
         return self.parser.parse_books(url_handler)

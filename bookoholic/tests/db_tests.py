@@ -3,10 +3,9 @@ import os.path
 sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 
 import sqlite3
-from install import create_table
+#from install import create_table
 from settings import DATABASE_NAME
 from book.book import Book
-from install import *
 from db_manipulations import *
 
 import unittest
@@ -26,8 +25,8 @@ class DBTest(unittest.TestCase):
     def __init__(self, *args):
         unittest.TestCase.__init__(self, *args)
 
-    def setUp(self):
-        create_table()
+    """def setUp(self):
+        create_table()"""
 
     def add_dummy_entries(self):
         book1 = Book(*BOOK1)
